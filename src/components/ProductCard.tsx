@@ -7,8 +7,9 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
+  const productUrl = `${window.location.origin}/#/producto/${product.id}`;
   const whatsappUrl = `https://wa.me/51946499493?text=${encodeURIComponent(
-    `Hola, me interesa el producto: ${product.name}. Aquí está mi link de pedido: ${window.location.origin}/#/producto/${product.id}`
+    `Hola, quisiera hacer un pedido del producto "${product.name}". ${productUrl}`
   )}`;
 
   return (
@@ -28,11 +29,6 @@ export default function ProductCard({ product }: Props) {
             </span>
           </div>
         )}
-        <div className="absolute top-3 right-3">
-          <div className="bg-white/90 backdrop-blur-sm text-rose-700 text-sm font-bold px-3 py-1.5 rounded-full shadow-lg">
-            S/. {product.price}
-          </div>
-        </div>
       </Link>
 
       <div className="p-4 flex flex-col flex-1">

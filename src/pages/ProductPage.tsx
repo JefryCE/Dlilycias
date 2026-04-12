@@ -1,4 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ArrowLeft, Heart, ShoppingBag, Share2, Star } from 'lucide-react';
 import { getProductById, products } from '../data/products';
 import ProductCard from '../components/ProductCard';
@@ -7,6 +8,10 @@ export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const product = id ? getProductById(id) : undefined;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!product) {
     return (
@@ -29,7 +34,7 @@ export default function ProductPage() {
 
   const productUrl = `${window.location.origin}/#/producto/${product.id}`;
   const whatsappUrl = `https://wa.me/51946499493?text=${encodeURIComponent(
-    `Hola, me interesa el producto: ${product.name}. Aquí está mi link de pedido: ${productUrl}`
+    `Hola, quisiera hacer un pedido del producto "${product.name}". ${productUrl}`
   )}`;
 
   const handleShare = async () => {
@@ -117,13 +122,6 @@ export default function ProductPage() {
               </p>
 
               <div className="mt-auto">
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-4xl font-bold text-rose-600">
-                    S/. {product.price}
-                  </span>
-                  <span className="text-stone-400 text-sm">por unidad</span>
-                </div>
-
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
                     href={whatsappUrl}
