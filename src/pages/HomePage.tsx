@@ -48,7 +48,7 @@ export default function HomePage() {
       >
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-rose-50 text-rose-500 text-xs font-semibold px-4 py-2 rounded-full mb-4 tracking-wider uppercase">
-            Día de la Madre 2025
+            Día de la Madre 2026
           </div>
           <h2
             className="text-4xl sm:text-5xl font-bold text-stone-800 mb-4"
