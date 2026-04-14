@@ -278,6 +278,16 @@ export const products: Product[] = [
     mothersDayMessage: 'Un corazón de fresas para mamá: rojo, dulce y lleno de amor. El postre que le robará el corazón.',
     tag: 'Especial Mamá',
   },
+  {
+    id: 'pie-maracuya',
+    name: 'PIE DE MARACUYÁ',
+    category: 'PIE',
+    price: 52,
+    image: 'https://res.cloudinary.com/dgvh1novr/image/upload/v1776110895/Gemini_Generated_Image_ivio5civio5civio_fcc050.png',
+    description: 'Exquisito pie de maracuyá con base crocante y relleno cremoso de fruta tropical. Sabor intenso y refrescante con un toque ácido que equilibra la dulzura perfecta. Ideal para el Día de la Madre.',
+    mothersDayMessage: 'Tropical y exótico, como el amor único e irrepetible de mamá. Este pie de maracuyá es una explosión de sabor.',
+    tag: 'Nuevo',
+  },
 ];
 
 export const getProductById = (id: string): Product | undefined =>
