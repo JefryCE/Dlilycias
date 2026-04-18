@@ -292,71 +292,71 @@ export const products: Product[] = [
     "id": "chantilly-de-rosas-rojas-31",
     "name": "CHANTILLY DE ROSAS ROJAS",
     "category": "TORTA",
-    "price": 0,
+    "price": 125,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491212/Gemini_Generated_Image_jtazgkjtazgkjtaz_ty1azj.png",
-    "description": "CHANTILLY DE ROSAS ROJAS",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Espectacular torta decorada con un diseño de rosas rojas en crema Chantilly. Bizcocho húmedo y relleno suave que hacen de cada bocado una experiencia deliciosa.",
+    "mothersDayMessage": "Porque el rojo representa el amor más profundo, esta torta es para decirte cuánto te amo, mamá.",
+    "tag": "Edición Especial"
   },
   {
     "id": "chantilly-de-rosas-rosadas-32",
     "name": "CHANTILLY DE ROSAS ROSADAS",
     "category": "TORTA",
-    "price": 0,
+    "price": 125,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491212/Gemini_Generated_Image_pqa32ppqa32ppqa3_seynv3.png",
-    "description": "CHANTILLY DE ROSAS ROSADAS",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Delicada torta cubierta con un hermoso diseño de rosas rosadas en crema Chantilly. Un detalle elegante y dulce, perfecto para celebrar en familia.",
+    "mothersDayMessage": "Tan tierna y especial como tú, mamá. Que tu día sea tan dulce como esta torta.",
+    "tag": "Nuevo"
   },
   {
     "id": "chantilly-con-lazos-33",
     "name": "CHANTILLY CON LAZOS",
     "category": "TORTA",
-    "price": 0,
+    "price": 130,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491212/Gemini_Generated_Image_uslxjsuslxjsuslx_j5pvsi.png",
-    "description": "CHANTILLY CON LAZOS",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Hermosa torta decorada con finos lazos y detalles en crema Chantilly. Un diseño elegante que acompaña un exquisito sabor casero.",
+    "mothersDayMessage": "Un regalo que viene envuelto con los lazos de nuestro amor. ¡Feliz día a la mejor mamá!",
+    "tag": "Favorito"
   },
   {
     "id": "donas-34",
     "name": "DONAS",
     "category": "DONAS",
-    "price": 0,
+    "price": 48,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491212/Gemini_Generated_Image_30ifhc30ifhc30if_tw2u3b.png",
-    "description": "DONAS",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Exquisita caja de donas artesanales decoradas con temáticas y colores para el Día de la Madre. Glaseados suaves y masa esponjosa.",
+    "mothersDayMessage": "Una dulce dona para alegrar tu día, porque tú siempre alegras los nuestros.",
+    "tag": "Original"
   },
   {
     "id": "chocolate-corazn-35",
     "name": "CHOCOLATE CORAZÓN",
     "category": "TORTA",
-    "price": 0,
+    "price": 135,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491213/Gemini_Generated_Image_4tfujd4tfujd4tfu_vl0i7k.png",
-    "description": "CHOCOLATE CORAZÓN",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Torta en forma de corazón bañada en delicioso chocolate y decorada con detalles florales. El regalo ideal para las mamás amantes del chocolate.",
+    "mothersDayMessage": "Un corazón de chocolate lleno de todo el amor y cariño que te mereces.",
+    "tag": "Edición Limitada"
   },
   {
     "id": "chocolate-corazn-36",
     "name": "CHOCOLATE CORAZÓN",
     "category": "TORTA",
-    "price": 0,
+    "price": 135,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491213/Gemini_Generated_Image_2wps922wps922wps_dmdzqz.png",
-    "description": "CHOCOLATE CORAZÓN",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Deliciosa torta de chocolate con forma de corazón, cubierta de una rica ganache y detalles encantadores. Perfecta para endulzar el corazón de mamá.",
+    "mothersDayMessage": "Para la mamá más dulce, un corazón que derrite de sabor.",
+    "tag": "Nuevo"
   },
   {
     "id": "chocolate-corazn-37",
     "name": "CHOCOLATE CORAZÓN",
     "category": "TORTA",
-    "price": 0,
+    "price": 135,
     "image": "https://res.cloudinary.com/dgvh1novr/image/upload/v1776491212/Gemini_Generated_Image_e89jd4e89jd4e89j_h0wiix.png",
-    "description": "CHOCOLATE CORAZÓN",
-    "mothersDayMessage": "¡Feliz día, Mamá!",
-    "tag": ""
+    "description": "Especial torta de chocolate artesanal en molde de corazón, decorada finamente para el Día de la Madre. Sabor intenso y textura inolvidable.",
+    "mothersDayMessage": "¡Feliz Día, mamá! Que este corazón de chocolate te recuerde lo especial que eres para nosotros.",
+    "tag": "Favorito"
   }
 ];
 
