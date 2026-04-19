@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, ShoppingBag } from 'lucide-react';
 import { CATEGORIES } from '../types';
+import { useCart } from '../context/CartContext';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const { totalItems, setIsCartOpen } = useCart();
+  const [cartBounce, setCartBounce] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -18,6 +21,15 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false);
   }, [location]);
+
+  // Bounce animation when items change
+  useEffect(() => {
+    if (totalItems > 0) {
+      setCartBounce(true);
+      const timer = setTimeout(() => setCartBounce(false), 400);
+      return () => clearTimeout(timer);
+    }
+  }, [totalItems]);
 
   return (
     <header
@@ -68,16 +80,37 @@ export default function Header() {
             ))}
           </nav>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className={`md:hidden p-2 rounded-full transition-colors duration-300 ${
-              scrolled || !isHome
-                ? 'text-rose-600 hover:bg-rose-50'
-                : 'text-white hover:bg-white/20'
-            }`}
-          >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center gap-2">
+            {/* Cart button */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className={`relative p-2.5 rounded-full transition-all duration-300 ${
+                scrolled || !isHome
+                  ? 'text-rose-600 hover:bg-rose-50'
+                  : 'text-white hover:bg-white/20'
+              } ${cartBounce ? 'cart-bounce' : ''}`}
+              aria-label="Abrir carrito"
+            >
+              <ShoppingBag className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-rose-500 text-white text-[11px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md border-2 border-white">
+                  {totalItems > 9 ? '9+' : totalItems}
+                </span>
+              )}
+            </button>
+
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className={`md:hidden p-2 rounded-full transition-colors duration-300 ${
+                scrolled || !isHome
+                  ? 'text-rose-600 hover:bg-rose-50'
+                  : 'text-white hover:bg-white/20'
+              }`}
+            >
+              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 

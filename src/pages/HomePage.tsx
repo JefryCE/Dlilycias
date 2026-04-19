@@ -1,17 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import Hero from '../components/Hero';
+import Countdown from '../components/Countdown';
 import CategoryFilter from '../components/CategoryFilter';
 import ProductCard from '../components/ProductCard';
 import { products } from '../data/products';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+
+const PAGE_SIZE = 8;
 
 export default function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCategory = searchParams.get('categoria') || 'ALL';
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
   const catalogRef = useRef<HTMLElement>(null);
+
+  const catalogReveal = useScrollReveal<HTMLDivElement>();
+  const ctaReveal = useScrollReveal<HTMLDivElement>();
 
   useEffect(() => {
     const cat = searchParams.get('categoria');
@@ -20,6 +28,11 @@ export default function HomePage() {
       catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [searchParams]);
+
+  // Reset page when filter/search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchTerm]);
 
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
@@ -37,16 +50,29 @@ export default function HomePage() {
     return matchesCategory && matchesSearch;
   });
 
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const paginated = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <main>
       <Hero />
+
+      <Countdown />
 
       <section
         id="catalogo"
         ref={catalogRef}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
       >
-        <div className="text-center mb-12">
+        <div
+          ref={catalogReveal.ref}
+          className={`text-center mb-12 scroll-reveal ${catalogReveal.isVisible ? 'is-visible' : ''}`}
+        >
           <div className="inline-flex items-center gap-2 bg-rose-50 text-rose-500 text-xs font-semibold px-4 py-2 rounded-full mb-4 tracking-wider uppercase">
             Día de la Madre 2026
           </div>
@@ -89,20 +115,64 @@ export default function HomePage() {
           <>
             <p className="text-stone-400 text-sm mb-6">
               Mostrando{' '}
+              <span className="font-semibold text-stone-600">{paginated.length}</span>
+              {' '}de{' '}
               <span className="font-semibold text-stone-600">{filtered.length}</span>{' '}
               {filtered.length === 1 ? 'producto' : 'productos'}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filtered.map((product) => (
+              {paginated.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 mt-12">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-rose-200 text-rose-600 text-sm font-medium hover:bg-rose-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Anterior
+                </button>
+
+                <div className="flex gap-1.5">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`w-10 h-10 rounded-full text-sm font-semibold transition-all duration-200 ${
+                        page === currentPage
+                          ? 'bg-rose-500 text-white shadow-md shadow-rose-200 scale-110'
+                          : 'border border-rose-100 text-stone-500 hover:border-rose-300 hover:text-rose-600'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-rose-200 text-rose-600 text-sm font-medium hover:bg-rose-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                >
+                  Siguiente
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
           </>
         )}
       </section>
 
       <section className="bg-rose-50 py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+        <div
+          ref={ctaReveal.ref}
+          className={`max-w-4xl mx-auto px-4 text-center scroll-reveal-scale ${ctaReveal.isVisible ? 'is-visible' : ''}`}
+        >
           <h2
             className="text-3xl sm:text-4xl font-bold text-stone-800 mb-4"
             style={{ fontFamily: 'Georgia, serif' }}
