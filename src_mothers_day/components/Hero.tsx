@@ -1,4 +1,4 @@
-import { Sparkles, Hammer, Wrench, PenTool } from 'lucide-react';
+import { Heart, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -7,9 +7,30 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(135deg, #2d1810 0%, #4a2818 25%, #5c331f 50%, #75442a 75%, #8c5536 100%)',
+            'linear-gradient(135deg, #be123c 0%, #e11d48 25%, #f43f5e 50%, #fb7185 75%, #fda4af 100%)',
         }}
       />
+
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`,
+              opacity: 0.15 + Math.random() * 0.2,
+            }}
+          >
+            <Heart
+              className="fill-white text-white"
+              style={{ width: `${12 + Math.random() * 24}px`, height: `${12 + Math.random() * 24}px` }}
+            />
+          </div>
+        ))}
+      </div>
 
       <div
         className="absolute inset-0 pointer-events-none"
@@ -24,7 +45,7 @@ export default function Hero() {
           <div className="flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/30">
             <Sparkles className="w-4 h-4 text-amber-200" />
             <span className="text-white/90 text-sm font-medium tracking-widest uppercase">
-              Edición Especial Día del Padre
+              Edición Especial Día de la Madre
             </span>
             <Sparkles className="w-4 h-4 text-amber-200" />
           </div>
@@ -38,20 +59,20 @@ export default function Hero() {
         </h1>
 
         <p
-          className="text-2xl sm:text-3xl text-slate-100 mb-3 font-light italic"
+          className="text-2xl sm:text-3xl text-rose-100 mb-3 font-light italic"
           style={{ fontFamily: 'Georgia, serif' }}
         >
-          Endulza el día más especial de papá
+          Endulza el día más especial de mamá
         </p>
 
         <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-          Tortas, cupcakes, macetas y más, hechos con amor artesanal para celebrar al hombre
+          Tortas, cupcakes, macetas y más, hechos con amor artesanal para celebrar a la mujer
           más importante de tu vida.
         </p>
 
         <div className="flex justify-center">
           <a
-            href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día del Padre.')}`}
+            href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día de la Madre.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-full border border-white/40 hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
@@ -79,7 +100,7 @@ export default function Hero() {
 
       <div className="absolute bottom-0 left-0 right-0">
         <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
-          <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#f7ede2" />
+          <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#fff8f8" />
         </svg>
       </div>
     </section>

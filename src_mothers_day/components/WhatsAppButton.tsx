@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const productId = pathParts[pathParts.indexOf('producto') + 1];
   const product = productId ? products.find((p) => p.id === productId) : null;
 
-  const message = 'Hola, quisiera hacer un pedido de Dlilycias para el Día del Padre.';
+  const message = 'Hola, quisiera hacer un pedido de Dlilycias para el Día de la Madre.';
 
   const url = `https://wa.me/51946499493?text=${encodeURIComponent(message)}`;
 

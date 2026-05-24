@@ -6,16 +6,14 @@ import WhatsAppButton from './components/WhatsAppButton';
 import CartDrawer from './components/CartDrawer';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import FloatingTools from './components/FloatingTools';
 
 export default function App() {
   return (
     <CartProvider>
       <HashRouter>
-        <div className="min-h-screen flex flex-col bg-wood relative">
-          <FloatingTools />
+        <div className="min-h-screen flex flex-col bg-rose-50/20">
           <Header />
-          <div className="flex-1 z-10 relative">
+          <div className="flex-1">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/producto/:id" element={<ProductPage />} />

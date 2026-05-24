@@ -32,11 +32,11 @@ export default function CartDrawer() {
   }, [isCartOpen, setIsCartOpen]);
 
   const buildWhatsAppMessage = () => {
-    let message = '🏆 *Pedido de Dlilycias — Día del Padre 2026* 🏆\n\n';
+    let message = '🌸 *Pedido de Dlilycias — Día de la Madre 2026* 🌸\n\n';
     items.forEach((item, index) => {
       message += `${index + 1}. *${item.product.name}* x${item.quantity}\n`;
     });
-    message += `\n¡Gracias por su atención! 👔`;
+    message += `\n¡Gracias por su atención! 🎀`;
     return message;
   };
 
@@ -64,9 +64,9 @@ export default function CartDrawer() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-slate-50">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-rose-100 bg-gradient-to-r from-rose-50 to-pink-50">
           <div className="flex items-center gap-3">
-            <div className="bg-slate-500 p-2 rounded-xl shadow-md shadow-slate-200">
+            <div className="bg-rose-500 p-2 rounded-xl shadow-md shadow-rose-200">
               <ShoppingBag className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -83,7 +83,7 @@ export default function CartDrawer() {
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
-            className="p-2 rounded-full hover:bg-slate-100 text-stone-400 hover:text-slate-600 transition-all duration-200"
+            className="p-2 rounded-full hover:bg-rose-100 text-stone-400 hover:text-rose-600 transition-all duration-200"
           >
             <X className="w-5 h-5" />
           </button>
@@ -93,18 +93,18 @@ export default function CartDrawer() {
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-4">
-                <ShoppingBag className="w-10 h-10 text-slate-300" />
+              <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center mb-4">
+                <ShoppingBag className="w-10 h-10 text-rose-300" />
               </div>
               <h3 className="text-lg font-semibold text-stone-600 mb-2">
                 Tu carrito está vacío
               </h3>
               <p className="text-stone-400 text-sm max-w-[250px]">
-                Explora nuestro catálogo y agrega los dulces favoritos para papá
+                Explora nuestro catálogo y agrega los dulces favoritos para mamá
               </p>
               <button
                 onClick={() => setIsCartOpen(false)}
-                className="mt-6 px-6 py-2.5 bg-slate-500 text-white text-sm font-semibold rounded-full hover:bg-slate-600 transition-colors shadow-md shadow-slate-200"
+                className="mt-6 px-6 py-2.5 bg-rose-500 text-white text-sm font-semibold rounded-full hover:bg-rose-600 transition-colors shadow-md shadow-rose-200"
               >
                 Ver catálogo
               </button>
@@ -114,7 +114,7 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <div
                   key={item.product.id}
-                  className="flex gap-4 bg-slate-50/50 rounded-2xl p-3 border border-slate-100/60 cart-item-enter"
+                  className="flex gap-4 bg-rose-50/50 rounded-2xl p-3 border border-rose-100/60 cart-item-enter"
                 >
                   <img
                     src={item.product.image}
@@ -131,7 +131,7 @@ export default function CartDrawer() {
                           onClick={() =>
                             updateQuantity(item.product.id, item.quantity - 1)
                           }
-                          className="w-7 h-7 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-500 hover:bg-slate-100 transition-colors"
+                          className="w-7 h-7 flex items-center justify-center rounded-lg bg-white border border-rose-200 text-rose-500 hover:bg-rose-100 transition-colors"
                         >
                           <Minus className="w-3.5 h-3.5" />
                         </button>
@@ -142,7 +142,7 @@ export default function CartDrawer() {
                           onClick={() =>
                             updateQuantity(item.product.id, item.quantity + 1)
                           }
-                          className="w-7 h-7 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-500 hover:bg-slate-100 transition-colors"
+                          className="w-7 h-7 flex items-center justify-center rounded-lg bg-white border border-rose-200 text-rose-500 hover:bg-rose-100 transition-colors"
                         >
                           <Plus className="w-3.5 h-3.5" />
                         </button>
@@ -165,7 +165,7 @@ export default function CartDrawer() {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-slate-100 px-6 py-5 bg-white">
+          <div className="border-t border-rose-100 px-6 py-5 bg-white">
 
 
             <button

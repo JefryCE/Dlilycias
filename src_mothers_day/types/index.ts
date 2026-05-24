@@ -7,7 +7,7 @@ export interface Product {
   price: number;
   image: string;
   description: string;
-  fathersDayMessage: string;
+  mothersDayMessage: string;
   tag?: string;
 }
 

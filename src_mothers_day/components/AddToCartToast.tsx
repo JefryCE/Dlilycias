@@ -31,7 +31,7 @@ export default function AddToCartToast({ productName, show, onClose }: Props) {
           : 'opacity-0 -translate-y-4'
       }`}
     >
-      <div className="flex items-center gap-3 bg-white border border-slate-100 shadow-2xl shadow-slate-200/40 rounded-2xl px-5 py-3.5">
+      <div className="flex items-center gap-3 bg-white border border-rose-100 shadow-2xl shadow-rose-200/40 rounded-2xl px-5 py-3.5">
         <div className="bg-green-100 p-1.5 rounded-full">
           <CheckCircle className="w-5 h-5 text-green-600" />
         </div>

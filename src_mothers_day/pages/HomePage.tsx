@@ -73,8 +73,8 @@ export default function HomePage() {
           ref={catalogReveal.ref}
           className={`text-center mb-12 scroll-reveal ${catalogReveal.isVisible ? 'is-visible' : ''}`}
         >
-          <div className="inline-flex items-center gap-2 bg-slate-50 text-slate-500 text-xs font-semibold px-4 py-2 rounded-full mb-4 tracking-wider uppercase">
-            Día del Padre 2026
+          <div className="inline-flex items-center gap-2 bg-rose-50 text-rose-500 text-xs font-semibold px-4 py-2 rounded-full mb-4 tracking-wider uppercase">
+            Día de la Madre 2026
           </div>
           <h2
             className="text-4xl sm:text-5xl font-bold text-stone-800 mb-4"
@@ -83,7 +83,7 @@ export default function HomePage() {
             Nuestro Catálogo
           </h2>
           <p className="text-stone-500 text-lg max-w-xl mx-auto">
-            Dulces hechos con amor artesanal para celebrar a el hombre más especial
+            Dulces hechos con amor artesanal para celebrar a la mujer más especial
           </p>
         </div>
 
@@ -98,14 +98,14 @@ export default function HomePage() {
               placeholder="Buscar producto..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 text-sm bg-white shadow-sm"
+              className="w-full pl-10 pr-4 py-2.5 rounded-full border border-rose-100 focus:outline-none focus:ring-2 focus:ring-rose-200 focus:border-rose-300 text-sm bg-white shadow-sm"
             />
           </div>
         </div>
 
         {filtered.length === 0 ? (
           <div className="text-center py-24">
-            <div className="text-6xl mb-4">🏆</div>
+            <div className="text-6xl mb-4">🌸</div>
             <h3 className="text-xl font-semibold text-stone-600 mb-2">
               No encontramos productos
             </h3>
@@ -132,7 +132,7 @@ export default function HomePage() {
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-rose-200 text-rose-600 text-sm font-medium hover:bg-rose-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Anterior
@@ -145,8 +145,8 @@ export default function HomePage() {
                       onClick={() => handlePageChange(page)}
                       className={`w-10 h-10 rounded-full text-sm font-semibold transition-all duration-200 ${
                         page === currentPage
-                          ? 'bg-slate-500 text-white shadow-md shadow-slate-200 scale-110'
-                          : 'border border-slate-100 text-stone-500 hover:border-slate-300 hover:text-slate-600'
+                          ? 'bg-rose-500 text-white shadow-md shadow-rose-200 scale-110'
+                          : 'border border-rose-100 text-stone-500 hover:border-rose-300 hover:text-rose-600'
                       }`}
                     >
                       {page}
@@ -157,7 +157,7 @@ export default function HomePage() {
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-rose-200 text-rose-600 text-sm font-medium hover:bg-rose-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                 >
                   Siguiente
                   <ChevronRight className="w-4 h-4" />
@@ -168,7 +168,7 @@ export default function HomePage() {
         )}
       </section>
 
-      <section className="relative py-16">
+      <section className="bg-rose-50 py-16">
         <div
           ref={ctaReveal.ref}
           className={`max-w-4xl mx-auto px-4 text-center scroll-reveal-scale ${ctaReveal.isVisible ? 'is-visible' : ''}`}
@@ -177,13 +177,13 @@ export default function HomePage() {
             className="text-3xl sm:text-4xl font-bold text-stone-800 mb-4"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            ¿Lista tu sorpresa para papá?
+            ¿Lista tu sorpresa para mamá?
           </h2>
           <p className="text-stone-500 mb-8 text-lg">
             Escríbenos por WhatsApp y con gusto te ayudamos a elegir el dulce perfecto
           </p>
           <a
-            href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día del Padre.')}`}
+            href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día de la Madre.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-xl shadow-green-200 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-lg"

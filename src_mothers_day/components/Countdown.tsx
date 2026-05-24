@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Clock, Gift } from 'lucide-react';
 
-// Día del Padre en Perú 2026: tercer domingo de junio = 21 de junio 2026
-const MOTHERS_DAY = new Date('2026-06-21T00:00:00-05:00');
+// Día de la Madre en Perú 2026: segundo domingo de mayo = 10 de mayo 2026
+const MOTHERS_DAY = new Date('2026-05-10T00:00:00-05:00');
 
 interface TimeLeft {
   days: number;
@@ -70,7 +70,7 @@ export default function Countdown() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+            background: 'linear-gradient(135deg, #be185d 0%, #e11d48 50%, #f43f5e 100%)',
           }}
         />
         <div className="relative z-10 text-center px-4">
@@ -82,10 +82,10 @@ export default function Countdown() {
             className="text-3xl sm:text-4xl font-bold text-white mb-2"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            ¡Feliz Día del Padre! 🏆
+            ¡Feliz Día de la Madre! 🌸
           </h2>
           <p className="text-white/80 text-lg">
-            ¡Celebra a papá con los dulces más especiales!
+            ¡Celebra a mamá con los dulces más especiales!
           </p>
         </div>
       </section>
@@ -97,14 +97,14 @@ export default function Countdown() {
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(135deg, #020617 0%, #0f172a 30%, #1e293b 60%, #334155 100%)',
+          background: 'linear-gradient(135deg, #9f1239 0%, #be123c 30%, #e11d48 60%, #f43f5e 100%)',
         }}
       />
 
       {/* Decorative orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-slate-300/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-rose-300/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
@@ -122,7 +122,7 @@ export default function Countdown() {
           Cuenta Regresiva
         </h2>
         <p className="text-white/70 text-base sm:text-lg mb-8">
-          para el Día del Padre 2026
+          para el Día de la Madre 2026
         </p>
 
         <div className="flex justify-center gap-3 sm:gap-5 mb-8">
@@ -136,7 +136,7 @@ export default function Countdown() {
         </div>
 
         <p className="text-white/60 text-sm">
-          Haz tu pedido con anticipación y asegura la sorpresa perfecta 👔
+          Haz tu pedido con anticipación y asegura la sorpresa perfecta 🎀
         </p>
       </div>
     </section>

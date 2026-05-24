@@ -35,7 +35,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled || !isHome
-          ? 'bg-white/95 backdrop-blur-sm shadow-lg shadow-slate-100/50 py-3'
+          ? 'bg-white/95 backdrop-blur-sm shadow-lg shadow-rose-100/50 py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -44,13 +44,13 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-2 group">
             <div className="relative">
               <Heart
-                className="w-8 h-8 text-slate-500 fill-slate-500 group-hover:scale-110 transition-transform duration-300"
+                className="w-8 h-8 text-rose-500 fill-rose-500 group-hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div className="flex flex-col leading-none">
               <span
                 className={`font-bold text-xl tracking-wide transition-colors duration-300 ${
-                  scrolled || !isHome ? 'text-slate-700' : 'text-white'
+                  scrolled || !isHome ? 'text-rose-700' : 'text-white'
                 }`}
                 style={{ fontFamily: 'Georgia, serif' }}
               >
@@ -58,7 +58,7 @@ export default function Header() {
               </span>
               <span
                 className={`text-xs tracking-widest transition-colors duration-300 ${
-                  scrolled || !isHome ? 'text-slate-400' : 'text-slate-100'
+                  scrolled || !isHome ? 'text-rose-400' : 'text-rose-100'
                 }`}
               >
                 PASTELERÍA ARTESANAL
@@ -71,8 +71,8 @@ export default function Header() {
               <Link
                 key={cat.key}
                 to={`/?categoria=${cat.key}`}
-                className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-slate-50 hover:text-slate-600 ${
-                  scrolled || !isHome ? 'text-stone-600' : 'text-white/90 hover:text-slate-600'
+                className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-rose-50 hover:text-rose-600 ${
+                  scrolled || !isHome ? 'text-stone-600' : 'text-white/90 hover:text-rose-600'
                 }`}
               >
                 {cat.label}
@@ -86,14 +86,14 @@ export default function Header() {
               onClick={() => setIsCartOpen(true)}
               className={`relative p-2.5 rounded-full transition-all duration-300 ${
                 scrolled || !isHome
-                  ? 'text-slate-600 hover:bg-slate-50'
+                  ? 'text-rose-600 hover:bg-rose-50'
                   : 'text-white hover:bg-white/20'
               } ${cartBounce ? 'cart-bounce' : ''}`}
               aria-label="Abrir carrito"
             >
               <ShoppingBag className="w-6 h-6" />
               {totalItems > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-slate-500 text-white text-[11px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md border-2 border-white">
+                <span className="absolute -top-0.5 -right-0.5 bg-rose-500 text-white text-[11px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md border-2 border-white">
                   {totalItems > 9 ? '9+' : totalItems}
                 </span>
               )}
@@ -104,7 +104,7 @@ export default function Header() {
               onClick={() => setMenuOpen(!menuOpen)}
               className={`md:hidden p-2 rounded-full transition-colors duration-300 ${
                 scrolled || !isHome
-                  ? 'text-slate-600 hover:bg-slate-50'
+                  ? 'text-rose-600 hover:bg-rose-50'
                   : 'text-white hover:bg-white/20'
               }`}
             >
@@ -115,11 +115,11 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white/98 backdrop-blur-sm border-t border-slate-100 shadow-lg">
+        <div className="md:hidden bg-white/98 backdrop-blur-sm border-t border-rose-100 shadow-lg">
           <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
             <Link
               to="/"
-              className="px-4 py-3 rounded-xl text-stone-700 font-medium hover:bg-slate-50 hover:text-slate-600 transition-colors"
+              className="px-4 py-3 rounded-xl text-stone-700 font-medium hover:bg-rose-50 hover:text-rose-600 transition-colors"
             >
               Todos los productos
             </Link>
@@ -127,7 +127,7 @@ export default function Header() {
               <Link
                 key={cat.key}
                 to={`/?categoria=${cat.key}`}
-                className="px-4 py-3 rounded-xl text-stone-700 font-medium hover:bg-slate-50 hover:text-slate-600 transition-colors"
+                className="px-4 py-3 rounded-xl text-stone-700 font-medium hover:bg-rose-50 hover:text-rose-600 transition-colors"
               >
                 {cat.label}
               </Link>
