@@ -102,12 +102,7 @@ export default function CartDrawer() {
               <p className="text-stone-400 text-sm max-w-[250px]">
                 Explora nuestro catálogo y agrega los dulces favoritos para papá
               </p>
-              <button
-                onClick={() => setIsCartOpen(false)}
-                className="mt-6 px-6 py-2.5 bg-slate-500 text-white text-sm font-semibold rounded-full hover:bg-slate-600 transition-colors shadow-md shadow-slate-200"
-              >
-                Ver catálogo
-              </button>
+
             </div>
           ) : (
             <div className="space-y-4">

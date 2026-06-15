@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 // Pre-define background floating particles
 const BACKGROUND_PARTICLES = Array.from({ length: 15 }).map((_, i) => ({
@@ -108,13 +108,6 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a
-                href="#catalogo"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#D4A853] hover:bg-[#c59842] text-stone-900 font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#D4A853]/25 hover:shadow-[#D4A853]/40 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
-              >
-                Ver Catálogo
-                <ArrowRight className="w-4 h-4" />
-              </a>
               <a
                 href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día del Padre.')}`}
                 target="_blank"
