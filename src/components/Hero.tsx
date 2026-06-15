@@ -20,9 +20,11 @@ export default function Hero() {
     setLoaded(true);
     let index = 0;
     const timer = setInterval(() => {
-      setText((prev) => prev + fullText[index]);
-      index++;
-      if (index >= fullText.length) {
+      if (index < fullText.length) {
+        const char = fullText[index];
+        setText((prev) => prev + char);
+        index++;
+      } else {
         clearInterval(timer);
       }
     }, 60);
