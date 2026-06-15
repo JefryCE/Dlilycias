@@ -1,85 +1,186 @@
-import { Sparkles, Hammer, Wrench, PenTool } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Sparkles, ArrowRight } from 'lucide-react';
+
+// Pre-define background floating particles
+const BACKGROUND_PARTICLES = Array.from({ length: 15 }).map((_, i) => ({
+  id: i,
+  size: Math.random() * 8 + 3,
+  left: Math.random() * 100,
+  delay: Math.random() * 8,
+  duration: Math.random() * 10 + 6,
+  opacity: Math.random() * 0.35 + 0.15,
+}));
 
 export default function Hero() {
+  const [text, setText] = useState('');
+  const [loaded, setLoaded] = useState(false);
+  const fullText = 'Endulza el día más especial de papá';
+
+  useEffect(() => {
+    setLoaded(true);
+    let index = 0;
+    const timer = setInterval(() => {
+      setText((prev) => prev + fullText[index]);
+      index++;
+      if (index >= fullText.length) {
+        clearInterval(timer);
+      }
+    }, 60);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 bg-[#1c0f0d]">
+      {/* Background Gradient */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
         style={{
           background:
-            'linear-gradient(135deg, #2d1810 0%, #4a2818 25%, #5c331f 50%, #75442a 75%, #8c5536 100%)',
+            'radial-gradient(circle at 50% 50%, #3a1e17 0%, #1e0e0b 70%, #120705 100%)',
         }}
       />
 
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%)`,
-        }}
-      />
+      {/* Dynamic Floating Gold Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+        {BACKGROUND_PARTICLES.map((p) => (
+          <div
+            key={p.id}
+            className="absolute bottom-0 rounded-full bg-gradient-to-t from-amber-400 to-amber-200"
+            style={{
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              left: `${p.left}%`,
+              opacity: p.opacity,
+              animation: `particleFloat ${p.duration}s infinite linear`,
+              animationDelay: `${p.delay}s`,
+            }}
+          />
+        ))}
+      </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="flex justify-center mb-6">
-          <div className="flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/30">
-            <Sparkles className="w-4 h-4 text-amber-200" />
-            <span className="text-white/90 text-sm font-medium tracking-widest uppercase">
-              Edición Especial Día del Padre
-            </span>
-            <Sparkles className="w-4 h-4 text-amber-200" />
-          </div>
-        </div>
+      {/* Decorative Blur Orbs */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] rounded-full bg-amber-500/5 blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[20%] right-[10%] w-[25vw] h-[25vw] rounded-full bg-red-800/10 blur-[100px]" />
+      </div>
 
-        <h1
-          className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 leading-tight"
-          style={{ fontFamily: 'Georgia, serif', textShadow: '0 2px 20px rgba(0,0,0,0.15)' }}
-        >
-          DLILYCIAS
-        </h1>
-
-        <p
-          className="text-2xl sm:text-3xl text-slate-100 mb-3 font-light italic"
-          style={{ fontFamily: 'Georgia, serif' }}
-        >
-          Endulza el día más especial de papá
-        </p>
-
-        <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-          Tortas, cupcakes, macetas y más, hechos con amor artesanal para celebrar al hombre
-          más importante de tu vida.
-        </p>
-
-        <div className="flex justify-center">
-          <a
-            href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día del Padre.')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-full border border-white/40 hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Column: Text & Content */}
+          <div 
+            className={`lg:col-span-7 text-center lg:text-left transition-all duration-1000 transform ${
+              loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            }`}
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Pedir por WhatsApp
-          </a>
-        </div>
-
-        <div className="mt-16 grid grid-cols-3 gap-6 max-w-md mx-auto">
-          {[
-            { num: '7+', label: 'Categorías' },
-            { num: '100%', label: 'Artesanal' },
-            { num: '♥', label: 'Con Amor' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl font-bold text-white">{stat.num}</div>
-              <div className="text-white/70 text-sm mt-1">{stat.label}</div>
+            {/* Sparkle Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-5 py-2 border border-white/10 mb-6 shadow-lg">
+              <Sparkles className="w-4 h-4 text-[#D4A853] animate-pulse" />
+              <span className="text-white/80 text-xs font-semibold tracking-widest uppercase">
+                Edición Especial Día del Padre
+              </span>
+              <Sparkles className="w-4 h-4 text-[#D4A853] animate-pulse" />
             </div>
-          ))}
+
+            {/* Title */}
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 leading-none tracking-tight"
+              style={{ textShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
+            >
+              DLILYCIAS
+            </h1>
+
+            {/* Typewriter Subtitle */}
+            <div className="h-10 sm:h-12 mb-4">
+              <p
+                className="text-xl sm:text-2xl md:text-3xl text-amber-200/90 font-light italic typewriter-cursor inline"
+              >
+                {text}
+              </p>
+            </div>
+
+            {/* Description */}
+            <p className="text-white/70 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
+              Tortas temáticas, finos chocolates, alfajores artesanales y postres exclusivos, creados con la máxima dedicación y envueltos en detalles de lujo para celebrar a papá como se merece.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a
+                href="#catalogo"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#D4A853] hover:bg-[#c59842] text-stone-900 font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#D4A853]/25 hover:shadow-[#D4A853]/40 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+              >
+                Ver Catálogo
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href={`https://wa.me/51946499493?text=${encodeURIComponent('Hola, quisiera hacer un pedido de Dlilycias para el Día del Padre.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/5 backdrop-blur-sm text-white font-medium px-8 py-4 rounded-full border border-white/10 hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5"
+              >
+                Diseño Personalizado
+              </a>
+            </div>
+
+            {/* Stats Card */}
+            <div className="mt-14 p-6 bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/[0.05] grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+              {[
+                { num: '7+', label: 'Categorías' },
+                { num: '100%', label: 'Artesanal' },
+                { num: '★ Premium', label: 'Ingredientes' },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center border-r border-white/5 last:border-0">
+                  <div className="text-xl sm:text-2xl font-bold text-[#D4A853]">{stat.num}</div>
+                  <div className="text-white/50 text-[11px] sm:text-xs mt-1 uppercase tracking-widest">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Floating Premium Image Composition */}
+          <div 
+            className={`lg:col-span-5 flex justify-center items-center transition-all duration-1000 delay-300 transform ${
+              loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            }`}
+          >
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96">
+              {/* Decorative Gold Glow Ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#D4A853]/40 animate-[spin_80s_linear_infinite]" />
+              
+              {/* Product Card Glass Container */}
+              <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl animate-float">
+                <img
+                  src="https://res.cloudinary.com/dqcp8rmuz/image/upload/v1781493566/Gemini_Generated_Image_xw9601xw9601xw96_hjvsrl.png"
+                  alt="Empanadas Rellenas Dlilycias Especial"
+                  className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-[2000ms]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
+                
+                {/* Overlay Text */}
+                <div className="absolute bottom-6 left-0 right-0 text-center">
+                  <span className="bg-[#D4A853] text-stone-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                    Destacado
+                  </span>
+                  <h3 className="text-white font-bold text-lg mt-1 tracking-wide">Empanadas Rellenas</h3>
+                </div>
+              </div>
+
+              {/* Float Floating Badges */}
+              <div className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-500 to-yellow-400 text-stone-950 text-[10px] font-black w-14 h-14 rounded-full flex flex-col justify-center items-center shadow-lg border border-yellow-300 animate-pulse">
+                <span>DÍA DEL</span>
+                <span className="leading-none text-xs">PADRE</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0">
+      {/* Wave bottom separator */}
+      <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
         <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
-          <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#f7ede2" />
+          <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#faf6f0" />
         </svg>
       </div>
     </section>

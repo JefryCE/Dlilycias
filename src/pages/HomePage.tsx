@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ChevronDown, RefreshCw } from 'lucide-react';
 import Hero from '../components/Hero';
 import Countdown from '../components/Countdown';
 import CategoryFilter from '../components/CategoryFilter';
@@ -15,7 +15,7 @@ export default function HomePage() {
   const initialCategory = searchParams.get('categoria') || 'ALL';
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const catalogRef = useRef<HTMLElement>(null);
 
   const catalogReveal = useScrollReveal<HTMLDivElement>();
@@ -29,9 +29,9 @@ export default function HomePage() {
     }
   }, [searchParams]);
 
-  // Reset page when filter/search changes
+  // Reset visible count when filter/search changes
   useEffect(() => {
-    setCurrentPage(1);
+    setVisibleCount(PAGE_SIZE);
   }, [activeCategory, searchTerm]);
 
   const handleCategoryChange = (cat: string) => {
@@ -50,13 +50,7 @@ export default function HomePage() {
     return matchesCategory && matchesSearch;
   });
 
-  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-  const paginated = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  const paginated = filtered.slice(0, visibleCount);
 
   return (
     <main>
@@ -73,7 +67,7 @@ export default function HomePage() {
           ref={catalogReveal.ref}
           className={`text-center mb-12 scroll-reveal ${catalogReveal.isVisible ? 'is-visible' : ''}`}
         >
-          <div className="inline-flex items-center gap-2 bg-slate-50 text-slate-500 text-xs font-semibold px-4 py-2 rounded-full mb-4 tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-700 border border-amber-200/50 text-xs font-semibold px-4 py-2 rounded-full mb-4 tracking-wider uppercase">
             Día del Padre 2026
           </div>
           <h2
@@ -83,7 +77,7 @@ export default function HomePage() {
             Nuestro Catálogo
           </h2>
           <p className="text-stone-500 text-lg max-w-xl mx-auto">
-            Dulces hechos con amor artesanal para celebrar a el hombre más especial
+            Dulces hechos con amor artesanal para celebrar al hombre más especial
           </p>
         </div>
 
@@ -98,18 +92,32 @@ export default function HomePage() {
               placeholder="Buscar producto..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 text-sm bg-white shadow-sm"
+              className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 text-sm bg-white shadow-sm transition-all"
             />
           </div>
         </div>
 
         {filtered.length === 0 ? (
-          <div className="text-center py-24">
-            <div className="text-6xl mb-4">🏆</div>
-            <h3 className="text-xl font-semibold text-stone-600 mb-2">
+          <div className="text-center py-20 bg-white/40 backdrop-blur-md border border-stone-200/50 rounded-3xl p-8 max-w-lg mx-auto shadow-sm">
+            <div className="text-6xl mb-4 animate-bounce duration-1000">🔍</div>
+            <h3 className="text-2xl font-bold text-stone-700 mb-2" style={{ fontFamily: 'Georgia, serif' }}>
               No encontramos productos
             </h3>
-            <p className="text-stone-400">Intenta con otra categoría o término de búsqueda</p>
+            <p className="text-stone-500 mb-6">
+              Intenta buscando con otra palabra o borrando los filtros activos.
+            </p>
+            {(activeCategory !== 'ALL' || searchTerm !== '') && (
+              <button
+                onClick={() => {
+                  setSearchTerm('');
+                  handleCategoryChange('ALL');
+                }}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold shadow-md shadow-amber-500/10 hover:shadow-lg hover:scale-105 transition-all duration-200"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Limpiar filtros
+              </button>
+            )}
           </div>
         ) : (
           <>
@@ -126,41 +134,18 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 mt-12">
+            {/* Load More Button */}
+            {visibleCount < filtered.length && (
+              <div className="flex justify-center mt-12">
                 <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+                  className="relative group overflow-hidden px-8 py-3.5 rounded-full bg-slate-950 text-white font-bold tracking-wide shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 border border-amber-500/20"
                 >
-                  <ChevronLeft className="w-4 h-4" />
-                  Anterior
-                </button>
-
-                <div className="flex gap-1.5">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => handlePageChange(page)}
-                      className={`w-10 h-10 rounded-full text-sm font-semibold transition-all duration-200 ${
-                        page === currentPage
-                          ? 'bg-slate-500 text-white shadow-md shadow-slate-200 scale-110'
-                          : 'border border-slate-100 text-stone-500 hover:border-slate-300 hover:text-slate-600'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-                >
-                  Siguiente
-                  <ChevronRight className="w-4 h-4" />
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="relative z-10 flex items-center gap-2 group-hover:text-slate-950 transition-colors duration-300">
+                    Cargar más productos
+                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
+                  </span>
                 </button>
               </div>
             )}

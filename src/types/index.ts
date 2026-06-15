@@ -1,4 +1,4 @@
-export type Category = 'ALFAJORES' | 'CUPCAKES' | 'DONAS' | 'MACETA' | 'PIE' | 'TARTALETA' | 'TORTA';
+export type Category = 'ALFAJORES' | 'TORTA' | 'BROWNIE' | 'HABANITO' | 'CHOCOLATE' | 'MIXTO' | 'EMPANADAS';
 
 export interface Product {
   id: string;
@@ -14,10 +14,10 @@ export interface Product {
 export const CATEGORIES: { key: Category | 'ALL'; label: string }[] = [
   { key: 'ALL', label: 'Todos' },
   { key: 'ALFAJORES', label: 'Alfajores' },
-  { key: 'CUPCAKES', label: 'Cupcakes' },
-  { key: 'DONAS', label: 'Donas' },
-  { key: 'MACETA', label: 'Macetas' },
-  { key: 'PIE', label: 'Pie' },
-  { key: 'TARTALETA', label: 'Tartaletas' },
+  { key: 'BROWNIE', label: 'Brownies' },
+  { key: 'CHOCOLATE', label: 'Chocolates' },
+  { key: 'EMPANADAS', label: 'Empanadas' },
+  { key: 'HABANITO', label: 'Habanitos' },
+  { key: 'MIXTO', label: 'Mixtos' },
   { key: 'TORTA', label: 'Tortas' },
 ];
