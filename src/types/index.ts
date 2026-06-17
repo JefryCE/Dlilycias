@@ -4,7 +4,6 @@ export interface Product {
   id: string;
   name: string;
   category: Category;
-  price: number;
   image: string;
   description: string;
   fathersDayMessage: string;

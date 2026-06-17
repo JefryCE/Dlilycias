@@ -9,7 +9,6 @@ export default function CartDrawer() {
     updateQuantity,
     clearCart,
     totalItems,
-    totalPrice,
     isCartOpen,
     setIsCartOpen,
   } = useCart();

@@ -159,12 +159,6 @@ export default function ProductPage() {
                   </span>
                 </div>
 
-                {/* Price display */}
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-3xl font-extrabold text-slate-950">S/ {product.price.toFixed(2)}</span>
-                  <span className="text-stone-400 text-xs">Precio unitario</span>
-                </div>
-
                 <div className="bg-amber-50/50 border border-amber-200/30 rounded-2xl p-5 mb-6 border-l-4 border-amber-500">
                   <p className="text-amber-900 text-sm font-semibold leading-relaxed italic">
                     "{product.fathersDayMessage}"
